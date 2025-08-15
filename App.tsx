@@ -5,9 +5,41 @@ import { ServiceCard, HighlightCard } from './components/ServiceCard';
 import { SkillPill } from './components/SkillPill';
 import { ContactFooter } from './components/ContactFooter';
 import { blogServices, specialOffer, specializedWritingServices, skills, whyChooseMe, sampleLinks } from './constants';
-import { LinkIcon, DocumentTextIcon, PencilSquareIcon } from './components/Icons';
+import { LinkIcon, DocumentTextIcon, PencilSquareIcon, UserCircleIcon, SparklesIcon } from './components/Icons';
 import { Resume } from './components/Resume';
 import { Portfolio } from './components/Portfolio';
+
+const navItems = [
+    { tabName: 'resume', label: 'Resume', icon: <UserCircleIcon className="w-6 h-6 mb-1" /> },
+    { tabName: 'portfolio', label: 'Portfolio', icon: <SparklesIcon className="w-6 h-6 mb-1" /> },
+    { tabName: 'services', label: 'Services', icon: <PencilSquareIcon className="w-6 h-6 mb-1" /> },
+];
+
+const BottomNav: React.FC<{ activeTab: string; setActiveTab: (tab: string) => void; }> = ({ activeTab, setActiveTab }) => {
+    return (
+        <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-sm border-t border-border z-50">
+            <div className="container mx-auto px-6 flex justify-around">
+                {navItems.map(item => {
+                    const isActive = activeTab === item.tabName;
+                    return (
+                        <button
+                            key={item.tabName}
+                            onClick={() => setActiveTab(item.tabName)}
+                            className={`flex flex-col items-center justify-center w-full pt-3 pb-2 text-xs font-medium transition-colors duration-200 ${
+                                isActive ? 'text-primary' : 'text-muted hover:text-foreground'
+                            }`}
+                            aria-current={isActive ? 'page' : undefined}
+                        >
+                            {item.icon}
+                            <span>{item.label}</span>
+                        </button>
+                    )
+                })}
+            </div>
+        </nav>
+    );
+};
+
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('resume');
@@ -16,7 +48,7 @@ const App: React.FC = () => {
     <div className="bg-background text-foreground min-h-screen">
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <main>
+      <main className="pb-24 md:pb-0">
         {activeTab === 'resume' && <Resume />}
         {activeTab === 'portfolio' && <Portfolio />}
         {activeTab === 'services' && (
@@ -121,6 +153,7 @@ const App: React.FC = () => {
         )}
       </main>
 
+      <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
       <ContactFooter />
     </div>
   );
