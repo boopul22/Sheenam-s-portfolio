@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { Service, HighlightService, SpecializedService, Skill, WhyChooseMeItem, SampleLink, PortfolioData } from './types';
 import {
@@ -96,12 +95,12 @@ export const sampleLinks: SampleLink[] = [
 ];
 
 export const skills: Skill[] = [
-  { icon: <MagnifyingGlassIcon />, label: 'Keyword Research (Semrush)' },
-  { icon: <GlobeAltIcon />, label: 'WordPress Publishing' },
-  { icon: <DocumentTextIcon />, label: 'SOP & Visa Documents' },
-  { icon: <PencilSquareIcon />, label: 'Editing & Proofreading' },
-  { icon: <MegaphoneIcon />, label: 'SEO Content Strategy' },
-  { icon: <ChatBubbleBottomCenterTextIcon />, label: 'Brand Voice Adherence' },
+  { icon: <MagnifyingGlassIcon />, label: 'SEO Content (Ahrefs/Semrush)' },
+  { icon: <MegaphoneIcon />, label: 'Social Media Strategy' },
+  { icon: <PencilSquareIcon />, label: 'Copywriting (Email & Web)' },
+  { icon: <BookOpenIcon />, label: 'Short-Form Video Scripts' },
+  { icon: <GlobeAltIcon />, label: 'Editorial Calendar Mgmt.' },
+  { icon: <ChatBubbleBottomCenterTextIcon />, label: 'Analytics (GA4)' },
 ];
 
 export const whyChooseMe: WhyChooseMeItem[] = [
@@ -128,60 +127,59 @@ export const whyChooseMe: WhyChooseMeItem[] = [
 ];
 
 export const portfolioData: PortfolioData = {
-    summary: 'As a content writer with 4+ years of experience, I have built a strong reputation for delivering accurate, engaging, and timely work. My success lies in a deep understanding of target audience behavior and industry trends, which enables me to create impactful content that resonates and delivers results.',
+    summary: 'As a Content Writer and Social Media Manager with 4+ years of experience, I specialize in creating data-driven content that builds audiences and drives revenue. My work is focused on turning brand stories into measurable marketing success.',
     highlights: [
-        'Crafting high-quality, engaging, and informative content tailored to client needs.',
-        'Conducting in-depth keyword research to enhance content relevance.',
-        'Developing and integrating effective content strategies to achieve client goals.',
-        'Optimizing content for maximum search engine visibility (SEO).',
-        'Adapting tone and style to suit specific or diverse target audiences.',
-        'Proofreading and editing for impeccable accuracy and readability.',
+        'Grew organic blog traffic to 120,000 monthly visits via SEO.',
+        'Increased Instagram followers by +220% in 6 months.',
+        'Generated over 3 million organic views on Reels and short-form video.',
+        'Improved email nurture click-to-open rates from 2.8% to 6.4%.',
+        'Built and managed high-performing content engines for B2B/B2C brands.',
     ],
-    intro: 'My portfolio showcases a versatile range of topics and industries, reflecting my ability to produce exceptional, SEO-optimized content that drives traffic and engagement. Below is a curated selection of my work where my contributions have made a meaningful impact.',
+    intro: 'This portfolio highlights my expertise in creating high-performance content across various formats. Each sample demonstrates a strategic approach to engaging audiences and achieving specific business goals.',
     work: [
         {
-            category: 'Website Blog',
+            category: 'SEO Blog Writing',
+            description: 'Long-form articles designed to rank on Google and provide massive value to the reader.',
             items: [
-                { link: 'https://docs.google.com/document/d/1juvFTShjVpmmq_4G4IQM8kWrDvA-J0OnOQ0syZkyu7c/edit?tab=t.0' }
+                { link: 'https://docs.google.com/document/d/19IPm4zoPAOxCUU2H4WUFDDOUMhitubXBU2F1RqkiUYI/edit?usp=drive_link' }
             ]
         },
         {
-            category: 'Guest Post',
-            items: [
-                { link: 'https://docs.google.com/document/d/16xlo42tPDXb_3QcxBMPl4qNjZ9sASPOP24Z2jRSWBBM/edit?usp=sharing' }
-            ]
-        },
-        {
-            category: 'Website Content',
-            items: [
-                { link: 'https://docs.google.com/document/d/1ojF97fJNPWl9C2MBJbow9Qd4hxd3gGfvuocd7OaJuYU/edit?usp=sharing' },
-                { link: 'https://docs.google.com/document/d/1nMKsN9zzdgRzYVk6Xu0GVKQf-95UtmppZGty8gqWpL0/edit?usp=sharing' }
-            ]
-        },
-        {
-            category: 'Landing Page',
+            category: 'Landing Page Copy',
+            description: 'Persuasive copy crafted to convert visitors into customers.',
             items: [
                 { link: 'https://docs.google.com/document/d/1LBIYo9W8F7ANL1DeOpVxAcxKjA7rVJNnuBkW2AAt9rM/edit?usp=sharing' }
             ]
         },
         {
-            category: 'Social Media Post Content',
-            description: 'Technical Content - (Same posts are posted on Twitter and LinkedIn on the same profiles)',
-            items: [
-                { link: 'https://www.instagram.com/p/CqnSFIbP3MJ/?igshid=MzRlODBiNWFlZA==', type: 'instagram' },
-                { link: 'https://www.instagram.com/p/CsIe7nCPdhd/?igsh=Mmw2NjlydmVoZWo2', type: 'instagram' },
-                { link: 'https://www.instagram.com/p/CsaSmMaPZsm/?igsh=dnI3dnIyOXh1YW1l', type: 'instagram' },
-                { link: 'https://www.instagram.com/p/Cr2xXE0PbMH/?igsh=cnRxbzdsY2gyczdm', type: 'instagram' },
-                { link: 'https://www.instagram.com/p/CrdMg-9oo-m/?igsh=MWlhdHM2ZTU0Y2E0MQ==', type: 'instagram' },
-                { link: 'https://www.instagram.com/p/CsGZplGv3ng/?igshid=MzRlODBiNWFlZA==', type: 'instagram' }
-            ]
-        },
-        {
-            category: 'Other Content',
+            category: 'Email Nurture Sequence',
+            description: 'A series of emails that build trust and guide subscribers towards a purchase.',
             items: [
                 { link: 'https://drive.google.com/drive/folders/1VJB8qdksR_N2RxsJZkOka4E7UTwFvVPq' }
             ]
+        },
+        {
+            category: 'Social Media Case Study',
+            description: 'Before → After results from an organic Instagram growth strategy.',
+            items: [
+                { link: 'https://www.instagram.com/p/CqnSFIbP3MJ/?igshid=MzRlODBiNWFlZA==', type: 'instagram' },
+            ]
+        },
+         {
+            category: 'Social Media Content',
+            description: 'Engaging carousels, reels, and posts for Instagram, LinkedIn, and Twitter.',
+            items: [
+                { link: 'https://www.instagram.com/p/CsIe7nCPdhd/?igsh=Mmw2NjlydmVoZWo2', type: 'instagram' },
+                { link: 'https://www.instagram.com/p/CsaSmMaPZsm/?igsh=dnI3dnIyOXh1YW1l', type: 'instagram' },
+            ]
+        },
+        {
+            category: 'Content Systems & Strategy',
+            description: 'Templates and guides used to build scalable content engines for clients.',
+            items: [
+                { link: 'https://docs.google.com/document/d/1ojF97fJNPWl9C2MBJbow9Qd4hxd3gGfvuocd7OaJuYU/edit?usp=sharing' }
+            ]
         }
     ],
-    conclusion: 'This portfolio represents my professional journey as a content writer and SEO expert. Over the years, I have successfully crafted more than 250+ articles, showcasing my dedication and expertise in delivering top-quality content.'
+    conclusion: 'My goal is simple: create content that works. If you\'re looking for a partner who can deliver strategic, high-quality content that drives growth, let\'s talk.'
 };

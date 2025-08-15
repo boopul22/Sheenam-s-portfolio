@@ -7,13 +7,13 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
   const navItems = [
-      { tabName: 'resume', label: 'Resume' },
-      { tabName: 'portfolio', label: 'Portfolio' },
       { tabName: 'services', label: 'Services' },
+      { tabName: 'portfolio', label: 'Portfolio' },
+      { tabName: 'resume', label: 'Resume' },
   ];
 
   return (
-    <header className="bg-card/80 backdrop-blur-md border-b border-border sticky top-0 z-50">
+    <header className="bg-card/80 backdrop-blur-md border-b border-border sticky top-0 z-40">
         <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
             <div className="flex items-center">
                  <h1 className="text-xl font-bold text-card-foreground font-display">
@@ -29,14 +29,17 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                         <button
                             key={item.tabName}
                             onClick={() => setActiveTab(item.tabName)}
-                            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 relative ${
                             isActive
-                                ? 'bg-primary text-primary-foreground font-semibold'
-                                : 'text-muted hover:bg-border'
+                                ? 'text-primary'
+                                : 'text-muted hover:text-foreground hover:bg-border/50'
                             }`}
                             aria-current={isActive ? 'page' : undefined}
                         >
                             {item.label}
+                            {isActive && (
+                                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-primary rounded-full"></span>
+                            )}
                         </button>
                     )
                 })}

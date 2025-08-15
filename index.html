@@ -11,25 +11,22 @@
         theme: {
           extend: {
             colors: {
-              'background': '#FEFBFF', // A very light, soft purple/pink
-              'foreground': '#334155', // slate-700
-              'card': '#ffffff',       // white
-              'card-foreground': '#1e293b', // slate-800
-              'muted': '#64748b',      // slate-500
-              'muted-foreground': '#94a3b8', // slate-400
-              'border': '#F1EBF5',     // A muted border color derived from primary
+              'background': '#F9F9FE',      // Lighter, cleaner background
+              'foreground': '#334155',      // slate-700
+              'card': '#ffffff',            // white
+              'card-foreground': '#1e293b',  // slate-800
+              'muted': '#64748b',           // slate-500
+              'muted-foreground': '#94a3b8',  // slate-400
+              'border': '#E5E0F4',          // A soft lavender border
               
-              'primary': '#cdb4db',      // thistle
-              'primary-foreground': '#1e293b', // Using a dark color for better contrast on primary
+              'primary': '#A78BFA',           // A vibrant but professional violet
+              'primary-foreground': '#ffffff', // White for high contrast
               
-              'secondary': '#ffc8dd',    // fairy-tale
-              'highlight': '#ffafcc',    // carnation-pink
+              'secondary': '#FBCFE8',         // A soft, complementary pink
+              'highlight': '#F472B6',         // A brighter pink for highlights
               
-              'accent': '#bde0fe',       // uranian-blue
-              'accent-foreground': '#0B4778', // A dark blue for contrast
-              
-              'subtle-accent': '#a2d2ff', // light-sky-blue
-              'accent-background': '#f1f5f9', // slate-100
+              'accent': '#93C5FD',            // A friendly blue
+              'accent-foreground': '#1E40AF', // A darker blue for contrast
             }
           }
         }
@@ -47,6 +44,34 @@
       }
       .font-anton {
         font-family: 'Anton', sans-serif;
+      }
+      
+      @keyframes pulse-glow {
+        0%, 100% {
+          box-shadow: 0 0 8px rgba(167, 139, 250, 0.5), 0 0 16px rgba(167, 139, 250, 0.3);
+          transform: scale(1);
+        }
+        50% {
+          box-shadow: 0 0 16px rgba(167, 139, 250, 0.7), 0 0 32px rgba(167, 139, 250, 0.5);
+          transform: scale(1.03);
+        }
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+
+      .animate-pulse-glow {
+        animation: pulse-glow 3s infinite ease-in-out;
+      }
+
+      .animate-float {
+        animation: float 4s infinite ease-in-out;
       }
     </style>
   <script type="importmap">
