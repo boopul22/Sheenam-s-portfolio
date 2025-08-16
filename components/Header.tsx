@@ -1,11 +1,11 @@
+
 import React from 'react';
 
 interface HeaderProps {
     activeTab: string;
-    setActiveTab: (tab: string) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
+export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
   const navItems = [
       { tabName: 'services', label: 'Services' },
       { tabName: 'portfolio', label: 'Portfolio' },
@@ -26,9 +26,9 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                 {navItems.map(item => {
                     const isActive = activeTab === item.tabName;
                     return (
-                        <button
+                        <a
                             key={item.tabName}
-                            onClick={() => setActiveTab(item.tabName)}
+                            href={`#${item.tabName}`}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 relative ${
                             isActive
                                 ? 'text-primary'
@@ -40,7 +40,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                             {isActive && (
                                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-primary rounded-full"></span>
                             )}
-                        </button>
+                        </a>
                     )
                 })}
             </div>

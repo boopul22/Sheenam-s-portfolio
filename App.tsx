@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { ContactFooter } from './components/ContactFooter';
 import { Resume } from './components/Resume';
@@ -12,16 +13,16 @@ const navItems = [
     { tabName: 'resume', label: 'Resume', icon: <UserCircleIcon className="w-6 h-6" /> },
 ];
 
-const BottomNav: React.FC<{ activeTab: string; setActiveTab: (tab: string) => void; }> = ({ activeTab, setActiveTab }) => {
+const BottomNav: React.FC<{ activeTab: string; }> = ({ activeTab }) => {
     return (
         <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-sm border-t border-border z-50">
             <div className="container mx-auto px-4 flex justify-around">
                 {navItems.map(item => {
                     const isActive = activeTab === item.tabName;
                     return (
-                        <button
+                        <a
                             key={item.tabName}
-                            onClick={() => setActiveTab(item.tabName)}
+                            href={`#${item.tabName}`}
                             className={`flex flex-col items-center justify-center w-full pt-3 pb-2 text-xs font-medium transition-all duration-300 relative ${
                                 isActive ? 'text-primary bg-primary/10' : 'text-muted hover:text-foreground'
                             }`}
@@ -29,7 +30,7 @@ const BottomNav: React.FC<{ activeTab: string; setActiveTab: (tab: string) => vo
                         >
                             <div className="mb-1">{item.icon}</div>
                             <span>{item.label}</span>
-                        </button>
+                        </a>
                     )
                 })}
             </div>
@@ -70,14 +71,42 @@ const Hero: React.FC = () => (
 
 
 const App: React.FC = () => {
-  // Default to 'services' to show the main offerings first.
   const [activeTab, setActiveTab] = useState('services');
 
-  return (
-    <div className="bg-background text-foreground min-h-screen">
-      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.substring(1);
+      const validTabs = navItems.map(item => item.tabName);
 
-      <main className="pb-24 md:pb-0">
+      if (validTabs.includes(hash)) {
+        setActiveTab(hash);
+      } else {
+        // Default to 'services' and update hash for consistency without adding to history.
+        // Using window.location.replace to avoid SecurityError in sandboxed environments.
+        window.location.replace('#services');
+        setActiveTab('services');
+      }
+      // Scroll to top on every page navigation
+      window.scrollTo(0, 0);
+    };
+
+    // Check hash on initial load
+    handleHashChange();
+
+    // Listen for hash changes (e.g., browser back/forward buttons)
+    window.addEventListener('hashchange', handleHashChange, false);
+
+    // Cleanup listener on component unmount
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange, false);
+    };
+  }, []); // Empty dependency array ensures this runs only once.
+
+  return (
+    <div className="bg-background text-foreground min-h-screen pb-24 md:pb-0">
+      <Header activeTab={activeTab} />
+
+      <main>
         {activeTab === 'resume' && (
             <>
                 <Hero />
@@ -88,7 +117,7 @@ const App: React.FC = () => {
         {activeTab === 'services' && <Services />}
       </main>
 
-      <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
+      <BottomNav activeTab={activeTab} />
       <ContactFooter />
     </div>
   );

@@ -19,11 +19,11 @@
               'muted-foreground': '#94a3b8',  // slate-400
               'border': '#E5E0F4',          // A soft lavender border
               
-              'primary': '#A78BFA',           // A vibrant but professional violet
+              'primary': '#7C3AED',           // Darker, accessible violet (violet-600)
               'primary-foreground': '#ffffff', // White for high contrast
               
-              'secondary': '#FBCFE8',         // A soft, complementary pink
-              'highlight': '#F472B6',         // A brighter pink for highlights
+              'secondary': '#EC4899',         // A vibrant pink (pink-500)
+              'highlight': '#FBBF24',         // A bright, contrasting amber for highlights (amber-400)
               
               'accent': '#93C5FD',            // A friendly blue
               'accent-foreground': '#1E40AF', // A darker blue for contrast
@@ -36,6 +36,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
+      html {
+        scroll-padding-top: 5rem; /* Prevent sticky header from overlapping content */
+        scroll-behavior: smooth;
+      }
       body {
         font-family: 'Poppins', sans-serif;
       }
@@ -48,11 +52,11 @@
       
       @keyframes pulse-glow {
         0%, 100% {
-          box-shadow: 0 0 8px rgba(167, 139, 250, 0.5), 0 0 16px rgba(167, 139, 250, 0.3);
+          box-shadow: 0 0 8px rgba(124, 58, 237, 0.5), 0 0 16px rgba(124, 58, 237, 0.3);
           transform: scale(1);
         }
         50% {
-          box-shadow: 0 0 16px rgba(167, 139, 250, 0.7), 0 0 32px rgba(167, 139, 250, 0.5);
+          box-shadow: 0 0 16px rgba(124, 58, 237, 0.7), 0 0 32px rgba(124, 58, 237, 0.5);
           transform: scale(1.03);
         }
       }
