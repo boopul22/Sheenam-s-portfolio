@@ -6,8 +6,8 @@ const resumeData = {
     contact: {
         phone: '+91 99884-41561',
         email: 'sheenammiddha.19@gmail.com',
-        linkedin: 'http://www.linkedin.com/in/sheenam-middha/',
-        linkedinDisplay: 'in/sheenam-middha'
+        linkedin: 'http://www.linkedin.com/in/sheenammiddha/',
+        linkedinDisplay: 'in/sheenammiddha'
     },
     about: 'Results-driven Content Writer & Social Media Manager with 4+ years of experience, specializing in B2B/B2C tech and SaaS. I build content engines that deliver measurable results: grew organic traffic to 120K/month, increased Instagram followers by +220% in 6 months, and generated over 3 million organic views on short-form video.',
     experience: [
@@ -46,8 +46,8 @@ const resumeData = {
             dates: '2017 - 2020',
         },
     ],
-    skills: ['Content Writing', 'SEO Content', 'Copywriting', 'Editorial Calendars', 'Brand Voice', 'Social Media Strategy', 'Community Management', 'Short-form Video Scripts', 'Content Strategy', 'Email Marketing'],
-    tools: ['Google Analytics (GA4)', 'Ahrefs', 'SEMrush', 'Google Search Console', 'WordPress', 'Canva', 'Adobe Express', 'Hootsuite', 'Buffer', 'Notion', 'Grammarly'],
+    skills: ['Content Writing', 'SEO Optimization', 'Editing & Proofreading', 'Engaging Content Creation', 'Research', 'Digital Marketing', 'Social Media Strategy', 'Brand Awareness', 'Audience Engagement', 'Content Strategy', 'Critical Thinking', 'Creativity & Storytelling'],
+    tools: ['Google Analytics', 'Business Suite', 'Canva', 'Buffer', 'Hootsuite', 'Google Keyword Planner', 'Quillbot', 'Grammarly', 'Notion', 'Google Search Console', 'Ahrefs', 'WordPress', 'SEMrush'],
 };
 
 const SidebarSection: React.FC<{ title: string; children: React.ReactNode }> = ({ title, children }) => (
@@ -69,14 +69,15 @@ export const Resume: React.FC = () => {
         <div className="bg-background text-foreground font-sans">
             <div className="max-w-6xl mx-auto py-12 sm:py-16 px-4 sm:px-6">
                 <div className="bg-card p-6 sm:p-8 rounded-2xl border border-border">
-                    <div className="text-center mb-8 border-b border-border pb-4">
+                    <div className="text-center mb-10 border-b border-border pb-6">
                         <h2 className="text-lg font-semibold uppercase tracking-widest text-primary">
-                            Target Roles: Content Writer | Social Media Manager
+                            Content Writer | Social Media Manager
                         </h2>
+                         <p className="mt-2 text-muted text-sm max-w-2xl mx-auto">
+                            Specializing in: SEO & Website Content, Email Copy, Social Media Strategy, Reel Scripts, and Organic Growth.
+                        </p>
                     </div>
-                    <div className="mb-10">
-                      <HireMe />
-                    </div>
+                    
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                         
                         {/* Main Content (appears first on mobile) */}

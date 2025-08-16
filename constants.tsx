@@ -141,7 +141,7 @@ export const portfolioData: PortfolioData = {
             category: 'SEO Blog Writing',
             description: 'Long-form articles designed to rank on Google and provide massive value to the reader.',
             items: [
-                { link: 'https://docs.google.com/document/d/19IPm4zoPAOxCUU2H4WUFDDOUMhitubXBU2F1RqkiUYI/edit?usp=drive_link' }
+                { link: 'https://docs.google.com/document/d/16xlo42tPDXb_3QcxBMPl4qNjZ9sASPOP24Z2jRSWBBM/edit?usp=sharing' }
             ]
         },
         {
@@ -166,7 +166,7 @@ export const portfolioData: PortfolioData = {
             ]
         },
          {
-            category: 'Social Media Content',
+            category: 'Social Media Pages',
             description: 'Engaging carousels, reels, and posts for Instagram, LinkedIn, and Twitter.',
             items: [
                 { link: 'https://www.instagram.com/p/CsIe7nCPdhd/?igsh=Mmw2NjlydmVoZWo2', type: 'instagram' },
@@ -174,10 +174,32 @@ export const portfolioData: PortfolioData = {
             ]
         },
         {
-            category: 'Content Systems & Strategy',
-            description: 'Templates and guides used to build scalable content engines for clients.',
+            category: 'Website Content',
+            description: 'Examples of website content and copy.',
             items: [
-                { link: 'https://docs.google.com/document/d/1ojF97fJNPWl9C2MBJbow9Qd4hxd3gGfvuocd7OaJuYU/edit?usp=sharing' }
+                { link: 'https://docs.google.com/document/d/1ojF97fJNPWl9C2MBJbow9Qd4hxd3gGfvuocd7OaJuYU/edit?usp=sharing' },
+                { link: 'https://docs.google.com/document/d/1nMKsN9zzdgRzYVk6Xu0GVKQf-95UtmppZGty8gqWpL0/edit?usp=sharing' }
+            ]
+        },
+        {
+            category: 'Website Blog',
+            description: 'Sample blog posts written for client websites.',
+            items: [
+                { link: 'https://docs.google.com/document/d/1juvFTShjVpmmq_4G4IQM8kWrDvA-J0OnOQ0syZkyu7c/edit?tab=t.0' }
+            ]
+        },
+        {
+            category: 'Other Niches',
+            description: 'Content samples from various other industries and niches.',
+            items: [
+                { link: 'https://drive.google.com/drive/folders/1VJB8qdksR_N2RxsJZkOka4E7UTwFvVPq' }
+            ]
+        },
+        {
+            category: 'Emails',
+            description: 'Examples of email marketing copy.',
+            items: [
+                { link: 'https://docs.google.com/document/d/1U8sjZAJfD9wUMa_aDuwqprBkZ55HNcDYfxvUk1-72SI/edit?usp=sharing' }
             ]
         }
     ],
