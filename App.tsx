@@ -45,14 +45,17 @@ const BottomNav: React.FC<NavProps> = ({ activeTab }) => {
 
 // Hero Component - now shown only on resume page
 const Hero: React.FC = () => (
-    <header className="bg-card border-b border-border">
+    <header className="bg-card border-b border-border overflow-hidden">
         <div className="container mx-auto px-6 py-10 sm:py-16 text-center">
             <div className="mx-auto max-w-2xl">
-                <img 
-                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2576&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3%D" 
-                    alt="Sheenam Middha" 
-                    className="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-6 border-4 border-primary object-cover"
-                />
+                <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto mb-6">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-lg animate-pulse-glow" style={{ animationDuration: '6s' }}></div>
+                    <img 
+                        src="https://storage.googleapis.com/fpl-prompt-images/v1-output/1723829037130_0.png" 
+                        alt="Sheenam Middha" 
+                        className="w-full h-full object-contain relative z-10 animate-float"
+                    />
+                </div>
                 <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-card-foreground">
                     Sheenam Middha
                 </h1>
