@@ -51,74 +51,76 @@ const Hero: React.FC = () => (
                 <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto mb-6">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-lg animate-pulse-glow" style={{ animationDuration: '6s' }}></div>
                     <img 
-                        src="https://storage.googleapis.com/fpl-prompt-images/v1-output/1723829037130_0.png" 
-                        alt="Sheenam Middha" 
-                        className="w-full h-full object-contain relative z-10 animate-float"
+                        src="https://drive.usercontent.google.com/download?id=1IOKRj_eNTKIBObDvBYStCUtIQ-gbhpXP" 
+                        alt="Sheenam Middha"
+                        className="relative w-full h-full object-cover rounded-full shadow-lg" 
                     />
                 </div>
-                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-card-foreground">
+                <h1 className="text-4xl md:text-5xl font-anton uppercase tracking-wider text-card-foreground mt-6">
                     Sheenam Middha
                 </h1>
-                <p className="text-lg sm:text-xl md:text-2xl text-primary mt-2 font-semibold">
-                    Content Writer (SEO, Blogs, Email) | Social Media Manager (Organic + Reels)
+                <p className="mt-4 text-lg text-muted max-w-xl mx-auto">
+                    Content Writer & Social Media Strategist
                 </p>
-                <div className="mt-6 flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-2 text-muted">
-                    <span className="font-semibold text-foreground">🚀 3M+ Organic Views</span>
-                    <span className="hidden sm:inline text-primary/50">|</span>
-                    <span className="font-semibold text-foreground">📈 +220% Follower Growth</span>
-                     <span className="hidden sm:inline text-primary/50">|</span>
-                    <span className="font-semibold text-foreground">💻 120K Monthly Blog Visits</span>
-                </div>
-                <p className="mt-6 text-muted max-w-lg mx-auto">
-                    Crafting compelling narratives and data-driven content systems that drive traffic, engagement, and conversions for B2B & B2C brands.
-                </p>
+                <a 
+                    href="#resume" 
+                    className="mt-8 inline-block bg-primary text-primary-foreground font-bold py-3 px-8 rounded-lg transition-transform duration-300 hover:scale-105 animate-pulse-glow"
+                >
+                    View My Work
+                </a>
             </div>
         </div>
     </header>
 );
 
-const getTabFromHash = () => {
-    const hash = window.location.hash.substring(1); // remove leading '#'
-    const validTabs = navItems.map(item => item.tabName);
-    if (validTabs.includes(hash)) {
-        return hash;
-    }
-    return 'services'; // Default tab
-};
-
 const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState(getTabFromHash);
+    const [activeTab, setActiveTab] = useState('services');
 
-  useEffect(() => {
-    const handleHashChange = () => {
-      setActiveTab(getTabFromHash());
-    };
+    useEffect(() => {
+        const handleHashChange = () => {
+            const hash = window.location.hash.replace('#', '');
+            if (['services', 'portfolio', 'resume'].includes(hash)) {
+                setActiveTab(hash);
+            } else {
+                setActiveTab('services');
+            }
+        };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
+        window.addEventListener('hashchange', handleHashChange);
+        handleHashChange(); // Set initial tab
 
-  return (
-    <div className="bg-background text-foreground min-h-screen pb-24 md:pb-0">
-      <Header activeTab={activeTab} />
+        return () => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
 
-      <main>
-        {activeTab === 'resume' && (
-            <>
-                <Hero />
-                <Resume />
-            </>
-        )}
-        {activeTab === 'portfolio' && <Portfolio />}
-        {activeTab === 'services' && <Services />}
-      </main>
+    let content;
+    switch (activeTab) {
+        case 'resume':
+            content = (
+                <>
+                    <Hero />
+                    <Resume />
+                </>
+            );
+            break;
+        case 'portfolio':
+            content = <Portfolio />;
+            break;
+        case 'services':
+        default:
+            content = <Services />;
+            break;
+    }
 
-      <BottomNav activeTab={activeTab} />
-      <ContactFooter />
-    </div>
-  );
+    return (
+        <div className="bg-background min-h-screen">
+            <Header activeTab={activeTab} />
+            <main id={activeTab} className="pt-16 sm:pt-20"> {/* Add padding top to avoid overlap */}
+                {content}
+            </main>
+            <ContactFooter />
+            <BottomNav activeTab={activeTab} />
+        </div>
+    );
 };
 
 export default App;
