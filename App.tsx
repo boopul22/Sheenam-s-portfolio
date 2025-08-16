@@ -51,7 +51,7 @@ const Hero: React.FC = () => (
                 <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto mb-6">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-lg animate-pulse-glow" style={{ animationDuration: '6s' }}></div>
                     <img 
-                        src="https://drive.usercontent.google.com/download?id=1IOKRj_eNTKIBObDvBYStCUtIQ-gbhpXP" 
+                        src="https://ik.imagekit.io/adplbvb1c/Remove%20background%20project.png?updatedAt=1755345488990" 
                         alt="Sheenam Middha"
                         className="relative w-full h-full object-cover rounded-full shadow-lg" 
                     />
