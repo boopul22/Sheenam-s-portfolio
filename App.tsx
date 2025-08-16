@@ -13,7 +13,11 @@ const navItems = [
     { tabName: 'resume', label: 'Resume', icon: <UserCircleIcon className="w-6 h-6" /> },
 ];
 
-const BottomNav: React.FC<{ activeTab: string; }> = ({ activeTab }) => {
+interface NavProps {
+    activeTab: string;
+}
+
+const BottomNav: React.FC<NavProps> = ({ activeTab }) => {
     return (
         <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-sm border-t border-border z-50">
             <div className="container mx-auto px-4 flex justify-around">
@@ -22,7 +26,8 @@ const BottomNav: React.FC<{ activeTab: string; }> = ({ activeTab }) => {
                     return (
                         <a
                             key={item.tabName}
-                            href={`#${item.tabName}`}
+                            href={`/#${item.tabName}`}
+                            onClick={() => window.scrollTo(0, 0)}
                             className={`flex flex-col items-center justify-center w-full pt-3 pb-2 text-xs font-medium transition-all duration-300 relative ${
                                 isActive ? 'text-primary bg-primary/10' : 'text-muted hover:text-foreground'
                             }`}
@@ -70,9 +75,12 @@ const Hero: React.FC = () => (
 );
 
 const getTabFromHash = () => {
-    const hash = window.location.hash.substring(1);
+    const hash = window.location.hash.substring(1); // remove leading '#'
     const validTabs = navItems.map(item => item.tabName);
-    return validTabs.includes(hash) ? hash : 'services';
+    if (validTabs.includes(hash)) {
+        return hash;
+    }
+    return 'services'; // Default tab
 };
 
 const App: React.FC = () => {
@@ -80,9 +88,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleHashChange = () => {
-      const newTab = getTabFromHash();
-      setActiveTab(newTab);
-      window.scrollTo(0, 0);
+      setActiveTab(getTabFromHash());
     };
 
     window.addEventListener('hashchange', handleHashChange);

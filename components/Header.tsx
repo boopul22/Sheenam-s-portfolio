@@ -25,10 +25,12 @@ export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
             <div className="hidden md:flex items-center space-x-2">
                 {navItems.map(item => {
                     const isActive = activeTab === item.tabName;
+                    const path = `/#${item.tabName}`;
                     return (
                         <a
                             key={item.tabName}
-                            href={`#${item.tabName}`}
+                            href={path}
+                            onClick={() => window.scrollTo(0, 0)}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 relative ${
                             isActive
                                 ? 'text-primary'
