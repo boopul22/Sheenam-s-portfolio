@@ -1,6 +1,6 @@
+
 import React from 'react';
 import { EnvelopeIcon, PhoneIcon, LinkedInIcon } from './Icons';
-import { HireMe } from './HireMe';
 
 const resumeData = {
     contact: {
@@ -71,10 +71,10 @@ export const Resume: React.FC = () => {
                 <div className="bg-card p-6 sm:p-8 rounded-2xl border border-border">
                     <div className="text-center mb-10 border-b border-border pb-6">
                         <h2 className="text-lg font-semibold uppercase tracking-widest text-primary">
-                            Content Writer | Social Media Manager
+                            Social Media Strategist
                         </h2>
-                         <p className="mt-2 text-muted text-sm max-w-2xl mx-auto">
-                            Specializing in: SEO & Website Content, Email Copy, Social Media Strategy, Reel Scripts, and Organic Growth.
+                         <p className="mt-2 text-muted text-sm max-w-3xl mx-auto">
+                            Content Writer (SEO Writer, Website Content, Emails) | Social Media Manager (Social media content, Reels script, Organic growth)
                         </p>
                     </div>
                     

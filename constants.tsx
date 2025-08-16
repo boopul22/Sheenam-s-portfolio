@@ -1,3 +1,4 @@
+
 import React from 'react';
 import type { Service, HighlightService, SpecializedService, Skill, WhyChooseMeItem, SampleLink, PortfolioData } from './types';
 import {
@@ -145,27 +146,6 @@ export const portfolioData: PortfolioData = {
             ]
         },
         {
-            category: 'Landing Page Copy',
-            description: 'Persuasive copy crafted to convert visitors into customers.',
-            items: [
-                { link: 'https://docs.google.com/document/d/1LBIYo9W8F7ANL1DeOpVxAcxKjA7rVJNnuBkW2AAt9rM/edit?usp=sharing' }
-            ]
-        },
-        {
-            category: 'Email Nurture Sequence',
-            description: 'A series of emails that build trust and guide subscribers towards a purchase.',
-            items: [
-                { link: 'https://drive.google.com/drive/folders/1VJB8qdksR_N2RxsJZkOka4E7UTwFvVPq' }
-            ]
-        },
-        {
-            category: 'Social Media Case Study',
-            description: 'Before → After results from an organic Instagram growth strategy.',
-            items: [
-                { link: 'https://www.instagram.com/p/CqnSFIbP3MJ/?igshid=MzRlODBiNWFlZA==', type: 'instagram' },
-            ]
-        },
-         {
             category: 'Social Media Pages',
             description: 'Engaging carousels, reels, and posts for Instagram, LinkedIn, and Twitter.',
             items: [

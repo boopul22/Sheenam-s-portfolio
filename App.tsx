@@ -62,12 +62,6 @@ const Hero: React.FC = () => (
                 <p className="mt-4 text-lg text-muted max-w-xl mx-auto">
                     Content Writer & Social Media Strategist
                 </p>
-                <a 
-                    href="#resume" 
-                    className="mt-8 inline-block bg-primary text-primary-foreground font-bold py-3 px-8 rounded-lg transition-transform duration-300 hover:scale-105 animate-pulse-glow"
-                >
-                    View My Work
-                </a>
             </div>
         </div>
     </header>
