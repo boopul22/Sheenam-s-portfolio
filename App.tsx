@@ -7,6 +7,21 @@ import { Portfolio } from './components/Portfolio';
 import { Services } from './components/Services';
 import { UserCircleIcon, SparklesIcon, PencilSquareIcon } from './components/Icons';
 
+/**
+ * A client-side navigation handler that uses the History API to change the URL
+ * without a full page reload. It also dispatches a 'popstate' event to ensure
+ * that the component state updates in response to the navigation.
+ */
+const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    e.preventDefault();
+    // Only push a new state if the path is different
+    if (window.location.pathname !== path) {
+        window.history.pushState({}, '', path);
+        const navEvent = new PopStateEvent('popstate');
+        window.dispatchEvent(navEvent);
+    }
+};
+
 const navItems = [
     { tabName: 'services', label: 'Services', icon: <PencilSquareIcon className="w-6 h-6" /> },
     { tabName: 'portfolio', label: 'Portfolio', icon: <SparklesIcon className="w-6 h-6" /> },
@@ -19,10 +34,12 @@ const BottomNav: React.FC<{ activeTab: string; }> = ({ activeTab }) => {
             <div className="container mx-auto px-4 flex justify-around">
                 {navItems.map(item => {
                     const isActive = activeTab === item.tabName;
+                    const path = `/${item.tabName}`;
                     return (
                         <a
                             key={item.tabName}
-                            href={`#${item.tabName}`}
+                            href={path}
+                            onClick={(e) => handleNavClick(e, path)}
                             className={`flex flex-col items-center justify-center w-full pt-3 pb-2 text-xs font-medium transition-all duration-300 relative ${
                                 isActive ? 'text-primary bg-primary/10' : 'text-muted hover:text-foreground'
                             }`}
@@ -74,31 +91,35 @@ const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('services');
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.substring(1);
+    const handleLocationChange = () => {
+      const path = window.location.pathname.substring(1); // e.g. "services" from "/services"
       const validTabs = navItems.map(item => item.tabName);
+      
+      // Determine the tab to display. Default to 'services' if path is invalid or empty.
+      const newTab = validTabs.includes(path) ? path : 'services';
 
-      if (validTabs.includes(hash)) {
-        setActiveTab(hash);
-      } else {
-        // Default to 'services' and update hash for consistency without adding to history.
-        // Using window.location.replace to avoid SecurityError in sandboxed environments.
-        window.location.replace('#services');
-        setActiveTab('services');
+      // If the URL doesn't match the tab we decided to show, update the URL.
+      // This handles the root path ('/') and any invalid paths ('/foo').
+      if (`/${newTab}` !== window.location.pathname) {
+        // In sandboxed environments, history.replaceState can throw a SecurityError.
+        // window.location.replace() is a safer alternative for setting the initial URL.
+        window.location.replace(`/${newTab}`);
+        return; // Stop execution to allow the page to reload.
       }
-      // Scroll to top on every page navigation
+
+      setActiveTab(newTab);
       window.scrollTo(0, 0);
     };
 
-    // Check hash on initial load
-    handleHashChange();
+    // Listen for back/forward navigation or programmatic navigation via handleNavClick
+    window.addEventListener('popstate', handleLocationChange);
 
-    // Listen for hash changes (e.g., browser back/forward buttons)
-    window.addEventListener('hashchange', handleHashChange, false);
+    // Run on initial load to set the correct state from the URL
+    handleLocationChange();
 
     // Cleanup listener on component unmount
     return () => {
-      window.removeEventListener('hashchange', handleHashChange, false);
+      window.removeEventListener('popstate', handleLocationChange);
     };
   }, []); // Empty dependency array ensures this runs only once.
 
