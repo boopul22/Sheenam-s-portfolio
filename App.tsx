@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { ContactFooter } from './components/ContactFooter';
 import { Resume } from './components/Resume';
@@ -7,39 +7,26 @@ import { Portfolio } from './components/Portfolio';
 import { Services } from './components/Services';
 import { UserCircleIcon, SparklesIcon, PencilSquareIcon } from './components/Icons';
 
-/**
- * A client-side navigation handler that uses the History API to change the URL
- * without a full page reload. It also dispatches a 'popstate' event to ensure
- * that the component state updates in response to the navigation.
- */
-const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
-    e.preventDefault();
-    // Only push a new state if the path is different
-    if (window.location.pathname !== path) {
-        window.history.pushState({}, '', path);
-        const navEvent = new PopStateEvent('popstate');
-        window.dispatchEvent(navEvent);
-    }
-};
-
 const navItems = [
     { tabName: 'services', label: 'Services', icon: <PencilSquareIcon className="w-6 h-6" /> },
     { tabName: 'portfolio', label: 'Portfolio', icon: <SparklesIcon className="w-6 h-6" /> },
     { tabName: 'resume', label: 'Resume', icon: <UserCircleIcon className="w-6 h-6" /> },
 ];
 
-const BottomNav: React.FC<{ activeTab: string; }> = ({ activeTab }) => {
+const BottomNav: React.FC<{ activeTab: string; onTabChange: (tab: string) => void; }> = ({ activeTab, onTabChange }) => {
     return (
         <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-card/95 backdrop-blur-sm border-t border-border z-50">
             <div className="container mx-auto px-4 flex justify-around">
                 {navItems.map(item => {
                     const isActive = activeTab === item.tabName;
-                    const path = `/${item.tabName}`;
                     return (
                         <a
                             key={item.tabName}
-                            href={path}
-                            onClick={(e) => handleNavClick(e, path)}
+                            href={`#${item.tabName}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              onTabChange(item.tabName);
+                            }}
                             className={`flex flex-col items-center justify-center w-full pt-3 pb-2 text-xs font-medium transition-all duration-300 relative ${
                                 isActive ? 'text-primary bg-primary/10' : 'text-muted hover:text-foreground'
                             }`}
@@ -90,42 +77,14 @@ const Hero: React.FC = () => (
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState('services');
 
-  useEffect(() => {
-    const handleLocationChange = () => {
-      const path = window.location.pathname.substring(1); // e.g. "services" from "/services"
-      const validTabs = navItems.map(item => item.tabName);
-      
-      // Determine the tab to display. Default to 'services' if path is invalid or empty.
-      const newTab = validTabs.includes(path) ? path : 'services';
-
-      // If the URL doesn't match the tab we decided to show, update the URL.
-      // This handles the root path ('/') and any invalid paths ('/foo').
-      if (`/${newTab}` !== window.location.pathname) {
-        // In sandboxed environments, history.replaceState can throw a SecurityError.
-        // window.location.replace() is a safer alternative for setting the initial URL.
-        window.location.replace(`/${newTab}`);
-        return; // Stop execution to allow the page to reload.
-      }
-
-      setActiveTab(newTab);
-      window.scrollTo(0, 0);
-    };
-
-    // Listen for back/forward navigation or programmatic navigation via handleNavClick
-    window.addEventListener('popstate', handleLocationChange);
-
-    // Run on initial load to set the correct state from the URL
-    handleLocationChange();
-
-    // Cleanup listener on component unmount
-    return () => {
-      window.removeEventListener('popstate', handleLocationChange);
-    };
-  }, []); // Empty dependency array ensures this runs only once.
+  const handleTabChange = (tabName: string) => {
+    setActiveTab(tabName);
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div className="bg-background text-foreground min-h-screen pb-24 md:pb-0">
-      <Header activeTab={activeTab} />
+      <Header activeTab={activeTab} onTabChange={handleTabChange} />
 
       <main>
         {activeTab === 'resume' && (
@@ -138,7 +97,7 @@ const App: React.FC = () => {
         {activeTab === 'services' && <Services />}
       </main>
 
-      <BottomNav activeTab={activeTab} />
+      <BottomNav activeTab={activeTab} onTabChange={handleTabChange} />
       <ContactFooter />
     </div>
   );

@@ -1,26 +1,12 @@
 
 import React from 'react';
 
-/**
- * A client-side navigation handler that uses the History API to change the URL
- * without a full page reload. It also dispatches a 'popstate' event to ensure
- * that the component state updates in response to the navigation.
- */
-const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
-    e.preventDefault();
-    // Only push a new state if the path is different
-    if (window.location.pathname !== path) {
-        window.history.pushState({}, '', path);
-        const navEvent = new PopStateEvent('popstate');
-        window.dispatchEvent(navEvent);
-    }
-};
-
 interface HeaderProps {
     activeTab: string;
+    onTabChange: (tabName: string) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
+export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
   const navItems = [
       { tabName: 'services', label: 'Services' },
       { tabName: 'portfolio', label: 'Portfolio' },
@@ -40,12 +26,14 @@ export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
             <div className="hidden md:flex items-center space-x-2">
                 {navItems.map(item => {
                     const isActive = activeTab === item.tabName;
-                    const path = `/${item.tabName}`;
                     return (
                         <a
                             key={item.tabName}
-                            href={path}
-                            onClick={(e) => handleNavClick(e, path)}
+                            href={`#${item.tabName}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              onTabChange(item.tabName);
+                            }}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 relative ${
                             isActive
                                 ? 'text-primary'
