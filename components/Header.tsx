@@ -3,10 +3,9 @@ import React from 'react';
 
 interface HeaderProps {
     activeTab: string;
-    onTabChange: (tabName: string) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
+export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
   const navItems = [
       { tabName: 'services', label: 'Services' },
       { tabName: 'portfolio', label: 'Portfolio' },
@@ -30,10 +29,6 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
                         <a
                             key={item.tabName}
                             href={`#${item.tabName}`}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              onTabChange(item.tabName);
-                            }}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 relative ${
                             isActive
                                 ? 'text-primary'
