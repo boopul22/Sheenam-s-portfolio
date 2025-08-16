@@ -7,9 +7,9 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ activeTab }) => {
   const navItems = [
-      { tabName: 'services', label: 'Services' },
-      { tabName: 'portfolio', label: 'Portfolio' },
       { tabName: 'resume', label: 'Resume' },
+      { tabName: 'portfolio', label: 'Portfolio' },
+      { tabName: 'services', label: 'Services' },
   ];
 
   return (

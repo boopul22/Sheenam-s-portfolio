@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { ContactFooter } from './components/ContactFooter';
@@ -8,9 +9,9 @@ import { Services } from './components/Services';
 import { UserCircleIcon, SparklesIcon, PencilSquareIcon } from './components/Icons';
 
 const navItems = [
-    { tabName: 'services', label: 'Services', icon: <PencilSquareIcon className="w-6 h-6" /> },
-    { tabName: 'portfolio', label: 'Portfolio', icon: <SparklesIcon className="w-6 h-6" /> },
     { tabName: 'resume', label: 'Resume', icon: <UserCircleIcon className="w-6 h-6" /> },
+    { tabName: 'portfolio', label: 'Portfolio', icon: <SparklesIcon className="w-6 h-6" /> },
+    { tabName: 'services', label: 'Services', icon: <PencilSquareIcon className="w-6 h-6" /> },
 ];
 
 interface NavProps {
@@ -68,7 +69,7 @@ const Hero: React.FC = () => (
 );
 
 const App: React.FC = () => {
-    const [activeTab, setActiveTab] = useState('services');
+    const [activeTab, setActiveTab] = useState('resume');
 
     useEffect(() => {
         const handleHashChange = () => {
@@ -76,7 +77,7 @@ const App: React.FC = () => {
             if (['services', 'portfolio', 'resume'].includes(hash)) {
                 setActiveTab(hash);
             } else {
-                setActiveTab('services');
+                setActiveTab('resume');
             }
         };
 
@@ -111,7 +112,7 @@ const App: React.FC = () => {
             <main id={activeTab} className="pt-16 sm:pt-20"> {/* Add padding top to avoid overlap */}
                 {content}
             </main>
-            <ContactFooter />
+            {activeTab !== 'resume' && <ContactFooter />}
             <BottomNav activeTab={activeTab} />
         </div>
     );

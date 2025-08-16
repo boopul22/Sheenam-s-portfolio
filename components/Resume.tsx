@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { EnvelopeIcon, PhoneIcon, LinkedInIcon } from './Icons';
 
@@ -71,7 +72,7 @@ export const Resume: React.FC = () => {
                 <div className="bg-card p-6 sm:p-8 rounded-2xl border border-border">
                     <div className="text-center mb-10 border-b border-border pb-6">
                         <h2 className="text-lg font-semibold uppercase tracking-widest text-primary">
-                            Social Media Strategist
+                            Content Writer & Social Media Strategist
                         </h2>
                          <p className="mt-2 text-muted text-sm max-w-3xl mx-auto">
                             Content Writer (SEO Writer, Website Content, Emails) | Social Media Manager (Social media content, Reels script, Organic growth)
@@ -127,23 +128,17 @@ export const Resume: React.FC = () => {
                         <aside className="lg:col-span-1 space-y-8">
                             <SidebarSection title="Contact">
                                 <ul className="space-y-3 text-sm">
-                                    <li>
-                                        <a href={`mailto:${resumeData.contact.email}`} className="flex items-center gap-3 text-muted hover:text-primary transition-colors">
-                                            <EnvelopeIcon className="w-5 h-5 text-primary/70" />
-                                            <span>{resumeData.contact.email}</span>
-                                        </a>
+                                    <li className="flex items-center gap-3 text-muted">
+                                        <EnvelopeIcon className="w-5 h-5 text-primary/70" />
+                                        <span>{resumeData.contact.email}</span>
                                     </li>
-                                    <li>
-                                        <a href={`tel:${resumeData.contact.phone}`} className="flex items-center gap-3 text-muted hover:text-primary transition-colors">
-                                            <PhoneIcon className="w-5 h-5 text-primary/70" />
-                                            <span>{resumeData.contact.phone}</span>
-                                        </a>
+                                    <li className="flex items-center gap-3 text-muted">
+                                        <PhoneIcon className="w-5 h-5 text-primary/70" />
+                                        <span>{resumeData.contact.phone}</span>
                                     </li>
-                                    <li>
-                                        <a href={resumeData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted hover:text-primary transition-colors">
-                                            <LinkedInIcon className="w-5 h-5 text-primary/70" />
-                                            <span>{resumeData.contact.linkedinDisplay}</span>
-                                        </a>
+                                    <li className="flex items-center gap-3 text-muted">
+                                        <LinkedInIcon className="w-5 h-5 text-primary/70" />
+                                        <span>{resumeData.contact.linkedinDisplay}</span>
                                     </li>
                                 </ul>
                             </SidebarSection>
