@@ -3,53 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes" />
+    <meta name="theme-color" content="#7C3AED" />
+    <meta name="color-scheme" content="light" />
     <title>Sheenam Middha | Content Writing Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'background': '#F9F9FE',      // Lighter, cleaner background
-              'foreground': '#334155',      // slate-700
-              'card': '#ffffff',            // white
-              'card-foreground': '#1e293b',  // slate-800
-              'muted': '#64748b',           // slate-500
-              'muted-foreground': '#94a3b8',  // slate-400
-              'border': '#E5E0F4',          // A soft lavender border
-              
-              'primary': '#7C3AED',           // Darker, accessible violet (violet-600)
-              'primary-foreground': '#ffffff', // White for high contrast
-              
-              'secondary': '#EC4899',         // A vibrant pink (pink-500)
-              'highlight': '#FBBF24',         // A bright, contrasting amber for highlights (amber-400)
-              
-              'accent': '#93C5FD',            // A friendly blue
-              'accent-foreground': '#1E40AF', // A darker blue for contrast
-            }
-          }
-        }
-      }
-    </script>
+    <!-- Preload critical fonts for better performance -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Anton&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- Fallback for browsers that don't support preload -->
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
+    </noscript>
+    <!-- DNS prefetch and preconnect for performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//ik.imagekit.io">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Critical resources will be preloaded by build process -->
+    <!-- Critical CSS for immediate rendering -->
     <style>
+      /* Critical base styles to prevent FOUC */
       html {
-        scroll-padding-top: 5rem; /* Prevent sticky header from overlapping content */
         scroll-behavior: smooth;
+        scroll-padding-top: 5rem;
       }
+
       body {
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #F9F9FE;
+        color: #334155;
+        line-height: 1.6;
       }
+
+      /* Prevent layout shift during font loading */
       h1, h2, h3, h4, .font-display {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Playfair Display', ui-serif, Georgia, 'Times New Roman', serif;
+        font-display: swap;
       }
+
       .font-anton {
-        font-family: 'Anton', sans-serif;
+        font-family: 'Anton', ui-sans-serif, system-ui, Arial, sans-serif;
+        font-display: swap;
       }
-      
+
+      /* Critical layout styles */
+      .min-h-screen { min-height: 100vh; }
+      .bg-background { background-color: #F9F9FE; }
+      .bg-card { background-color: #ffffff; }
+      .text-foreground { color: #334155; }
+      .text-card-foreground { color: #1e293b; }
+      .text-primary { color: #7C3AED; }
+      .border-border { border-color: #E5E0F4; }
+
+      /* Loading state to prevent flash */
+      #root:empty::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100vh;
+        background-color: #F9F9FE;
+      }
+
+      /* Critical animations */
       @keyframes pulse-glow {
         0%, 100% {
           box-shadow: 0 0 8px rgba(124, 58, 237, 0.5), 0 0 16px rgba(124, 58, 237, 0.3);
@@ -62,22 +85,70 @@
       }
 
       @keyframes float {
-        0%, 100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-6px);
-        }
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
       }
 
-      .animate-pulse-glow {
-        animation: pulse-glow 3s infinite ease-in-out;
-      }
-
-      .animate-float {
-        animation: float 4s infinite ease-in-out;
-      }
+      .animate-pulse-glow { animation: pulse-glow 3s infinite ease-in-out; }
+      .animate-float { animation: float 4s infinite ease-in-out; }
     </style>
+
+    <!-- Font loading optimization script -->
+    <script>
+      // Optimize font loading and prevent FOUT
+      (function() {
+        // Check if fonts are already loaded
+        if (sessionStorage.getItem('fontsLoaded')) {
+          document.documentElement.classList.add('fonts-loaded');
+          return;
+        }
+
+        // Load fonts asynchronously
+        const fontPromises = [
+          new FontFace('Poppins', 'url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2)', {
+            weight: '400',
+            display: 'swap'
+          }).load(),
+          new FontFace('Playfair Display', 'url(https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtXK-F2qO0isEw.woff2)', {
+            weight: '700',
+            display: 'swap'
+          }).load(),
+          new FontFace('Anton', 'url(https://fonts.gstatic.com/s/anton/v25/1Ptgg87LROyAm3Kz-C8CSKlv.woff2)', {
+            display: 'swap'
+          }).load()
+        ];
+
+        Promise.all(fontPromises).then(function(fonts) {
+          fonts.forEach(function(font) {
+            document.fonts.add(font);
+          });
+          document.documentElement.classList.add('fonts-loaded');
+          sessionStorage.setItem('fontsLoaded', 'true');
+        }).catch(function() {
+          // Fallback: still mark as loaded to prevent indefinite waiting
+          document.documentElement.classList.add('fonts-loaded');
+        });
+
+        // Timeout fallback
+        setTimeout(function() {
+          document.documentElement.classList.add('fonts-loaded');
+        }, 3000);
+      })();
+
+      // Register service worker for caching
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+
   <script type="importmap">
 {
   "imports": {

@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+@layer base {
+  html {
+    scroll-padding-top: 5rem; /* Prevent sticky header from overlapping content */
+    scroll-behavior: smooth;
+    /* Prevent horizontal scrolling on mobile */
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    /* Prevent horizontal scrolling */
+    overflow-x: hidden;
+    /* Better text rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Playfair Display', ui-serif, Georgia, serif;
+  }
+
+  .font-anton {
+    font-family: 'Anton', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Improve image loading */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Better focus styles for accessibility */
+  *:focus-visible {
+    outline: 2px solid #7C3AED;
+    outline-offset: 2px;
+  }
+}
+
+/* Component styles */
+@layer components {
+  .animate-pulse-glow {
+    animation: pulse-glow 3s infinite ease-in-out;
+  }
+
+  .animate-float {
+    animation: float 4s infinite ease-in-out;
+  }
+
+  /* Enhanced responsive container */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      max-width: 640px;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1536px;
+    }
+  }
+
+  /* Safe area handling for mobile devices */
+  .safe-area-inset {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Better touch targets for mobile */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Font fallbacks for better loading */
+@font-face {
+  font-family: 'Poppins-fallback';
+  src: local('Arial'), local('Helvetica'), local('sans-serif');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair-fallback';
+  src: local('Georgia'), local('Times'), local('serif');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Anton-fallback';
+  src: local('Arial Black'), local('Helvetica'), local('sans-serif');
+  font-display: swap;
+}
